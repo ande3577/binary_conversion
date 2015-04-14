@@ -70,3 +70,43 @@ func BoolArrayToByteArray(bits []bool) []byte {
 	}
 	return bytes
 }
+
+func StringToBoolArray(str string, bitsLength int) []bool {
+	bits := make([]bool, bitsLength)
+
+	j := uint(0)
+	for i := 0; i < bitsLength; i++ {
+		if i/8 < len(str) {
+			ch := str[i/8]
+			if ch&(1<<j) != 0 {
+				bits[i] = true
+			}
+			j++
+			if j == 8 {
+				j = 0
+			}
+		}
+	}
+
+	return bits
+}
+
+func BoolArrayToString(bits []bool) string {
+	str := ""
+	var ch rune
+	j := uint(0)
+	for _, b := range bits {
+		if b {
+			ch |= (1 << j)
+		}
+		j++
+		if j == 8 {
+			j = 0
+			if ch != 0 {
+				str += string(ch)
+			}
+			ch = 0
+		}
+	}
+	return str[:len(str)]
+}

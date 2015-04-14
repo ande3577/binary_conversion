@@ -64,3 +64,9 @@ func (s *BinaryConversionSuite) TestBitArrayToByteArray(c *C) {
 	c.Assert(bytes[0], Equals, byte(0x34))
 	c.Assert(bytes[1], Equals, byte(0x12))
 }
+
+func (s *BinaryConversionSuite) TestStringToBoolArray(c *C) {
+	bits := StringToBoolArray("abcd", 64)
+	c.Assert(len(bits), Equals, 64)
+	c.Assert(BoolArrayToString(bits), Equals, "abcd")
+}
