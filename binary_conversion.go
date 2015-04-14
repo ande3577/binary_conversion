@@ -52,3 +52,21 @@ func BoolArrayToInt(bits []bool) int64 {
 		return int64(BoolArrayToUint(bits))
 	}
 }
+
+func BoolArrayToByteArray(bits []bool) []byte {
+	j := uint(0)
+	by := byte(0)
+	bytes := make([]byte, (len(bits)+7)/8)
+	for i, b := range bits {
+		if b {
+			by |= (1 << j)
+		}
+		j++
+		if j == 8 {
+			j = 0
+			bytes[i/8] = by
+			by = byte(0)
+		}
+	}
+	return bytes
+}

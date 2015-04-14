@@ -56,3 +56,11 @@ func (s *BinaryConversionSuite) TestIntOfLengthZero(c *C) {
 	c.Assert(len(bits), Equals, 0)
 	c.Assert(BoolArrayToInt(bits), Equals, int64(0))
 }
+
+func (s *BinaryConversionSuite) TestBitArrayToByteArray(c *C) {
+	bits := UintToBoolArray(uint64(0x1234), 16)
+	bytes := BoolArrayToByteArray(bits)
+	c.Assert(len(bytes), Equals, 2)
+	c.Assert(bytes[0], Equals, byte(0x34))
+	c.Assert(bytes[1], Equals, byte(0x12))
+}
