@@ -1,6 +1,12 @@
-# Binary Conversion
+# Golang Binary Conversion
 
-A library for converting to/from integers to boolean arrays.
+A go(lang) library for converting to/from integers to boolean 
+arrays.
+
+Integer conversions are little endian. Signed numbers are in two's
+complement.
+
+String conversions are 8 bit ASCII.
 
 # Dependencies
 
