@@ -1,7 +1,5 @@
 package binary_conversion
 
-import "fmt"
-
 func UintToBoolArray(value uint64, bitCount int) []bool {
 	bits := make([]bool, bitCount)
 	for i := 0; i < bitCount; i++ {
@@ -33,7 +31,7 @@ func IntToBoolArray(value int64, bitCount int) []bool {
 				bits[i] = true
 			}
 		}
-		fmt.Println(bits)
+
 		return bits
 	} else {
 		return UintToBoolArray(uint64(value), bitCount)
@@ -41,7 +39,7 @@ func IntToBoolArray(value int64, bitCount int) []bool {
 }
 
 func BoolArrayToInt(bits []bool) int64 {
-	if bits[len(bits)-1] {
+	if len(bits) > 0 && bits[len(bits)-1] {
 		var unsignedValue uint64 = 0
 		for i, b := range bits {
 			if !b {
