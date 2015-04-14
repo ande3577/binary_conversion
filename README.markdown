@@ -8,7 +8,7 @@ Install go 1.4.2 or later (earlier versions may or may not work)
 
 Install following depdendences:
 
-go get github.com/go-check/check
+go get gopkg.in/check.v1
 
 # Warranty
 
