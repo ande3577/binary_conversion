@@ -1,5 +1,7 @@
 package binary_conversion
 
+import "math"
+
 func UintToBoolArray(value uint64, bitCount int) []bool {
 	bits := make([]bool, bitCount)
 	for i := 0; i < bitCount; i++ {
@@ -109,4 +111,24 @@ func BoolArrayToString(bits []bool) string {
 		}
 	}
 	return str[:len(str)]
+}
+
+func Float32ToBoolArray(f float32) []bool {
+	u32 := math.Float32bits(f)
+	return UintToBoolArray(uint64(u32), 32)
+}
+
+func BoolArrayToFloat32(bits []bool) float32 {
+	u32 := uint32(BoolArrayToUint(bits))
+	return math.Float32frombits(u32)
+}
+
+func Float64ToBoolArray(f float64) []bool {
+	u64 := math.Float64bits(f)
+	return UintToBoolArray(u64, 64)
+}
+
+func BoolArrayToFloat64(bits []bool) float64 {
+	u64 := BoolArrayToUint(bits)
+	return math.Float64frombits(u64)
 }

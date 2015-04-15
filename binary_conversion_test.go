@@ -70,3 +70,15 @@ func (s *BinaryConversionSuite) TestStringToBoolArray(c *C) {
 	c.Assert(len(bits), Equals, 64)
 	c.Assert(BoolArrayToString(bits), Equals, "abcd")
 }
+
+func (s *BinaryConversionSuite) TestFloat32ToBoolArray(c *C) {
+	bits := Float32ToBoolArray(float32(10.546))
+	c.Check(bits, HasLen, 32)
+	c.Assert(BoolArrayToFloat32(bits), Equals, float32(10.546))
+}
+
+func (s *BinaryConversionSuite) TestFloat64ToBoolArray(c *C) {
+	bits := Float64ToBoolArray(float64(10.546))
+	c.Check(bits, HasLen, 64)
+	c.Assert(BoolArrayToFloat64(bits), Equals, float64(10.546))
+}
