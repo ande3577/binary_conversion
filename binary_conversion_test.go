@@ -2,6 +2,7 @@ package binary_conversion
 
 import (
 	. "gopkg.in/check.v1"
+	"math"
 	"testing"
 )
 
@@ -27,6 +28,11 @@ func (s *BinaryConversionSuite) TestUintOfLengthZero(c *C) {
 	bits := UintToBoolArray(0, 0)
 	c.Assert(len(bits), Equals, 0)
 	c.Assert(BoolArrayToUint(bits), Equals, uint64(0))
+}
+
+func (s *BinaryConversionSuite) TestGetMaxUintValue(c *C) {
+	c.Assert(MaxUint(8), Equals, uint64(math.MaxUint8))
+	c.Assert(MaxUint(64), Equals, uint64(math.MaxUint64))
 }
 
 func (s *BinaryConversionSuite) TestIntToBoolArray(c *C) {
@@ -55,6 +61,14 @@ func (s *BinaryConversionSuite) TestIntOfLengthZero(c *C) {
 	bits := IntToBoolArray(0, 0)
 	c.Assert(len(bits), Equals, 0)
 	c.Assert(BoolArrayToInt(bits), Equals, int64(0))
+}
+
+func (s *BinaryConversionSuite) TestGetMinMaxUintValue(c *C) {
+	c.Assert(MaxInt(8), Equals, int64(math.MaxInt8))
+	c.Assert(MaxInt(64), Equals, int64(math.MaxInt64))
+
+	c.Assert(MinInt(8), Equals, int64(math.MinInt8))
+	c.Assert(MinInt(64), Equals, int64(math.MinInt64))
 }
 
 func (s *BinaryConversionSuite) TestBitArrayToByteArray(c *C) {

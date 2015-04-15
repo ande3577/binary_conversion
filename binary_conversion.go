@@ -22,6 +22,10 @@ func BoolArrayToUint(bits []bool) uint64 {
 	return value
 }
 
+func MaxUint(bitCount uint) uint64 {
+	return (uint64(1) << bitCount) - 1
+}
+
 func IntToBoolArray(value int64, bitCount int) []bool {
 	if value < 0 {
 		bits := make([]bool, bitCount)
@@ -53,6 +57,14 @@ func BoolArrayToInt(bits []bool) int64 {
 	} else {
 		return int64(BoolArrayToUint(bits))
 	}
+}
+
+func MaxInt(bitCount uint) int64 {
+	return (int64(1) << (bitCount - 1)) - 1
+}
+
+func MinInt(bitCount uint) int64 {
+	return -(int64(1) << (bitCount - 1))
 }
 
 func BoolArrayToByteArray(bits []bool) []byte {
